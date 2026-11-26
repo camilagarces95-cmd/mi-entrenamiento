@@ -92,33 +92,36 @@ const explanations = {
 // Cada número indica cuántos ejercicios consecutivos pertenecen al bloque.
 const sectionPlan = [
 [
-[{title:"Calentamiento",count:3,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:1,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 2",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"1 ronda"},{title:"Cardio",count:1,meta:"25 min"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso"},{title:"Set 2",count:2,meta:"3 rondas · 1 min de descanso"},{title:"Finisher",count:1,meta:"Sin descanso"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"1 ronda"},{title:"Cardio",count:1,meta:"25 min"}],
-[{title:"Calentamiento",count:3,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 2",count:2,meta:"4 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:6,meta:"3 rondas · 1 min de descanso"},{title:"Cardio",count:1,meta:"25 min caminadora"}]
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:1,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Set 2",count:2,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Set 3",count:2,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Finisher",count:3,meta:"Circuito 1 · 2 rondas · sin descanso"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 3 rondas"}],
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 2",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 3",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 4",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Finisher",count:1,meta:"Circuito 1 · 1 ronda"},{title:"Cardio",count:1,meta:"25 min"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 2 rondas"}],
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:4,meta:"Circuito 1 · 3 rondas · descanso 1 min"},{title:"Set 2",count:4,meta:"Circuito 1 · 3 rondas · descanso 1 min"},{title:"Finisher",count:2,meta:"Circuito 1 · sin descanso"},{title:"Estiramiento",count:5,meta:"Circuito 1 · 3 rondas"}],
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 2",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 3",count:2,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 4",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Finisher",count:1,meta:"Circuito 1 · 1 ronda"},{title:"Cardio",count:1,meta:"25 min"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 2 rondas"}],
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:2,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Set 2",count:2,meta:"Circuito 1 · 4 rondas · descanso 1:30 después de cada ronda"},{title:"Set 3",count:2,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Finisher",count:2,meta:"Circuito 1 · 2 rondas · sin descanso"},{title:"Estiramiento",count:5,meta:"Circuito 1 · 3 rondas"}],
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:6,meta:"Circuito 1 · 3 rondas · descanso 1 min"},{title:"Cardio",count:1,meta:"25 min caminadora"}]
 ],
 [
-[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 2",count:1,meta:"3 rondas"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 4",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"1 ronda · sin descanso"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:4,meta:"3 rondas · 1 min de descanso después de cada ronda"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:4,meta:"3 rondas · 1 min de descanso"},{title:"Set 2",count:4,meta:"3 rondas · 1 min de descanso"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:1,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 5",count:4,meta:"3 rondas · 1 min de descanso después de cada ronda"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:1,meta:"4 rondas · 1:30 de descanso"},{title:"Set 2",count:2,meta:"3 rondas"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso"},{title:"Set 4",count:1,meta:"3 rondas · 1:30 de descanso"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
-[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:6,meta:"3 rondas · 1 min de descanso"},{title:"Cardio",count:1,meta:"25 min caminadora"}]
+[{title:"Calentamiento",count:5,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:2,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Set 2",count:1,meta:"Circuito 1 · 3 rondas"},{title:"Set 3",count:2,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Set 4",count:2,meta:"Circuito 1 · 3 rondas · descanso 1:30 después de cada ronda"},{title:"Finisher",count:1,meta:"Circuito 1 · 1 ronda · sin descanso"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 3 rondas"}],
+[{title:"Calentamiento",count:5,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 2",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 3",count:3,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 4",count:4,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 2 rondas"}],
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:4,meta:"Circuito 1 · 3 rondas · descanso 1 min"},{title:"Set 2",count:4,meta:"Circuito 1 · 3 rondas · descanso 1 min"},{title:"Finisher",count:2,meta:"Circuito 1 · 2 rondas · sin descanso"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 3 rondas"}],
+[{title:"Calentamiento",count:5,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:2,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 2",count:2,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 3",count:1,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 4",count:2,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Set 5",count:4,meta:"Circuito 1 · 3 rondas · descanso 1 min después de cada ronda"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 2 rondas"}],
+[{title:"Calentamiento",count:5,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:1,meta:"Circuito 1 · 4 rondas · descanso indicado 1:30"},{title:"Set 2",count:2,meta:"Circuito 1 · 3 rondas"},{title:"Set 3",count:2,meta:"Circuito 1 · 3 rondas · descanso indicado 1:30"},{title:"Set 4",count:1,meta:"Circuito 1 · 3 rondas · descanso indicado 1:30"},{title:"Finisher",count:2,meta:"Circuito 1 · 2 rondas · sin descanso"},{title:"Estiramiento",count:4,meta:"Circuito 1 · 3 rondas"}],
+[{title:"Calentamiento",count:4,meta:"Circuito 1 · 2 rondas"},{title:"Set 1",count:6,meta:"Circuito 1 · 3 rondas · descanso 1 min"},{title:"Cardio",count:1,meta:"25 min caminadora"}]
 ]
 ];
 
 const days=document.getElementById('day'),week=document.getElementById('week'),out=document.getElementById('workout');
 function key(){return 'mi-entrenamiento-'+week.value+'-'+days.value}
 function renderDays(){days.innerHTML='';data[+week.value].forEach((d,i)=>{let o=document.createElement('option');o.value=i;o.textContent=d[0];days.append(o)});days.value='0';render()}
-function render(){let d=data[+week.value][+days.value];let saved=JSON.parse(localStorage.getItem(key())||'{}');out.innerHTML=`<section class="card"><h2>${d[0]}</h2><div class="meta">${d[1]}</div><div><span class="tag">Marca al terminar</span><span class="tag">Anota tus cargas</span></div></section>`;
+function render(){
+let d=data[+week.value][+days.value];
+let saved=JSON.parse(localStorage.getItem(key())||'{}');
+out.innerHTML=`<section class="card"><h2>${d[0]}</h2><div class="meta">${d[1]}</div><div><span class="tag">Marca al terminar</span><span class="tag">Anota tus cargas</span></div></section>`;
 let exerciseIndex=0;
 sectionPlan[+week.value][+days.value].forEach(section=>{
 let block=document.createElement('section');block.className='card';
 block.innerHTML=`<h2>${section.title}</h2><div class="meta">${section.meta}</div>`;
 for(let n=0;n<section.count;n++){
-let raw=d[exerciseIndex+2]; if(raw===undefined) break;
+let raw=d[exerciseIndex+2];if(raw===undefined)break;
 let [name,detail]=raw.split('|');let id='e'+exerciseIndex;let val=saved[id]||{};
 let row=document.createElement('div');row.className='item';
 row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div>${explanations[name]?`<div class="explain"><b>Cómo hacerlo:</b> ${explanations[name]}</div>`:''}<input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"> <span class="note">peso usado</span></div>`;
@@ -128,14 +131,12 @@ cb.addEventListener('change',save);wt.addEventListener('input',save);block.appen
 }
 out.append(block);
 });
-// No dejar ejercicios fuera si un día tiene más elementos que los bloques definidos.
-if(exerciseIndex < d.length-2){
-let extra=document.createElement('section');extra.className='card';
-extra.innerHTML='<h2>Más ejercicios del día</h2><div class="meta">Se muestran en el orden original del plan</div>';
-while(exerciseIndex < d.length-2){
+if(exerciseIndex<d.length-2){
+let extra=document.createElement('section');extra.className='card';extra.innerHTML='<h2>Otros ejercicios</h2><div class="meta">Elementos restantes de la guía, en su orden original</div>';
+while(exerciseIndex<d.length-2){
 let raw=d[exerciseIndex+2];let [name,detail]=raw.split('|');let id='e'+exerciseIndex;let val=saved[id]||{};
 let row=document.createElement('div');row.className='item';
-row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div>${explanations[name]?`<div class="explain"><b>Cómo hacerlo:</b> ${explanations[name]}</div>`:''}<input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"> <span class="note">peso usado</span></div>`;
+row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div><input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"></div>`;
 let cb=row.querySelector('input[type=checkbox]'),wt=row.querySelector('.weight');
 function save(){saved[id]={done:cb.checked,weight:wt.value};localStorage.setItem(key(),JSON.stringify(saved))}
 cb.addEventListener('change',save);wt.addEventListener('input',save);extra.append(row);exerciseIndex++;
