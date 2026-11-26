@@ -87,11 +87,48 @@ const explanations = {
 "Elevación piernas":"Tumbada boca arriba, eleva las piernas y bájalas lentamente sin arquear la zona lumbar. Flexiona las rodillas si necesitas adaptar el movimiento."
 };
 
+
+// Organización visual por bloques, respetando el orden de los ejercicios de cada día.
+// Cada número indica cuántos ejercicios consecutivos pertenecen al bloque.
+const sectionPlan = [
+[
+[{title:"Calentamiento",count:3,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:1,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 2",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"1 ronda"},{title:"Cardio",count:1,meta:"25 min"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso"},{title:"Set 2",count:2,meta:"3 rondas · 1 min de descanso"},{title:"Finisher",count:1,meta:"Sin descanso"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"1 ronda"},{title:"Cardio",count:1,meta:"25 min"}],
+[{title:"Calentamiento",count:3,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 2",count:2,meta:"4 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:6,meta:"3 rondas · 1 min de descanso"},{title:"Cardio",count:1,meta:"25 min caminadora"}]
+],
+[
+[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 2",count:1,meta:"3 rondas"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Set 4",count:2,meta:"3 rondas · 1:30 de descanso después de cada ronda"},{title:"Finisher",count:1,meta:"1 ronda · sin descanso"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:3,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:4,meta:"3 rondas · 1 min de descanso después de cada ronda"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas · 30 s cada ejercicio"},{title:"Set 1",count:4,meta:"3 rondas · 1 min de descanso"},{title:"Set 2",count:4,meta:"3 rondas · 1 min de descanso"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 2",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 3",count:1,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 4",count:2,meta:"3 rondas · 1 min de descanso después de cada ronda"},{title:"Set 5",count:4,meta:"3 rondas · 1 min de descanso después de cada ronda"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:1,meta:"4 rondas · 1:30 de descanso"},{title:"Set 2",count:2,meta:"3 rondas"},{title:"Set 3",count:2,meta:"3 rondas · 1:30 de descanso"},{title:"Set 4",count:1,meta:"3 rondas · 1:30 de descanso"},{title:"Finisher",count:1,meta:"2 rondas · sin descanso"}],
+[{title:"Calentamiento",count:4,meta:"2 rondas"},{title:"Set 1",count:6,meta:"3 rondas · 1 min de descanso"},{title:"Cardio",count:1,meta:"25 min caminadora"}]
+]
+];
+
 const days=document.getElementById('day'),week=document.getElementById('week'),out=document.getElementById('workout');
 function key(){return 'mi-entrenamiento-'+week.value+'-'+days.value}
 function renderDays(){days.innerHTML='';data[+week.value].forEach((d,i)=>{let o=document.createElement('option');o.value=i;o.textContent=d[0];days.append(o)});days.value='0';render()}
 function render(){let d=data[+week.value][+days.value];let saved=JSON.parse(localStorage.getItem(key())||'{}');out.innerHTML=`<section class="card"><h2>${d[0]}</h2><div class="meta">${d[1]}</div><div><span class="tag">Marca al terminar</span><span class="tag">Anota tus cargas</span></div></section>`;
-d.slice(2).forEach((raw,i)=>{let [name,detail]=raw.split('|');let id='e'+i;let val=saved[id]||{};let row=document.createElement('div');row.className='card item';row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div>${explanations[name]?`<div class="explain"><b>Cómo hacerlo:</b> ${explanations[name]}</div>`:''}<input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"> <span class="note">peso usado</span></div>`;let cb=row.querySelector('input[type=checkbox]'),wt=row.querySelector('.weight');function save(){saved[id]={done:cb.checked,weight:wt.value};localStorage.setItem(key(),JSON.stringify(saved))}cb.addEventListener('change',save);wt.addEventListener('input',save);out.append(row)})}
+let exerciseIndex=0;
+sectionPlan[+week.value][+days.value].forEach(section=>{
+let block=document.createElement('section');block.className='card';
+block.innerHTML=`<h2>${section.title}</h2><div class="meta">${section.meta}</div>`;
+for(let n=0;n<section.count;n++){
+let raw=d[exerciseIndex+2]; if(raw===undefined) break;
+let [name,detail]=raw.split('|');let id='e'+exerciseIndex;let val=saved[id]||{};
+let row=document.createElement('div');row.className='item';
+row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div>${explanations[name]?`<div class="explain"><b>Cómo hacerlo:</b> ${explanations[name]}</div>`:''}<input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"> <span class="note">peso usado</span></div>`;
+let cb=row.querySelector('input[type=checkbox]'),wt=row.querySelector('.weight');
+function save(){saved[id]={done:cb.checked,weight:wt.value};localStorage.setItem(key(),JSON.stringify(saved))}
+cb.addEventListener('change',save);wt.addEventListener('input',save);block.append(row);exerciseIndex++;
+}
+out.append(block);
+});
+}
 function clearDay(){if(confirm('¿Reiniciar los checks y pesos de este día?')){localStorage.removeItem(key());render()}}
 week.addEventListener('change',renderDays);days.addEventListener('change',render);renderDays();
 if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js');
