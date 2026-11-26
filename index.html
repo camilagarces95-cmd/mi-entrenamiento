@@ -15,7 +15,7 @@ select{padding:12px;border:1px solid #d7ded9;border-radius:12px;background:white
 h2{font-size:19px;margin:4px 0 8px}.meta{font-size:13px;color:var(--muted);margin-bottom:12px}
 .item{border-top:1px solid #edf0ed;padding:12px 0;display:grid;grid-template-columns:24px 1fr;gap:9px}
 .item:first-of-type{border-top:0}.item input[type=checkbox]{width:19px;height:19px;accent-color:var(--green);margin-top:2px}
-.name{font-weight:600}.detail{font-size:13px;color:var(--muted);margin-top:3px}
+.name{font-weight:600}.detail{font-size:13px;color:var(--muted);margin-top:3px}.explain{font-size:13px;line-height:1.45;margin-top:7px;padding:8px 10px;background:#f3f7f4;border-left:3px solid var(--green);border-radius:7px;color:#34463d}.cycle{font-size:13px;color:var(--muted);margin:0 0 14px}.item{align-items:start}
 .weight{width:100px;border:1px solid #dce3de;border-radius:8px;padding:7px;margin-top:7px}
 .tag{display:inline-block;background:var(--mint);color:var(--green);padding:4px 8px;border-radius:20px;font-size:12px;margin:2px}
 button{background:var(--green);color:white;border:0;border-radius:12px;padding:11px 14px;font-size:14px;margin:5px 4px 5px 0}
@@ -23,10 +23,10 @@ button{background:var(--green);color:white;border:0;border-radius:12px;padding:1
 </style></head><body>
 <header><h1>💪 Mi entrenamiento</h1><div class="sub">Fuerza · técnica · registro de cargas</div></header>
 <main>
-<label for="week"><b>Semana</b></label><select id="week"><option value="0">Semana 1 · 30 nov – 6 dic 2026</option><option value="1">Semana 2 · 7 – 13 dic 2026</option></select>
-<label for="day"><b>Día</b></label><select id="day"></select>
+<label for="week"><b>Semana</b></label><select id="week"><option value="0">Semana 1</option><option value="1">Semana 2</option></select>
+<label for="day"><b>Día</b></label><select id="day"></select><p class="cycle">Al terminar la Semana 2, vuelve a la Semana 1 y repite el ciclo.</p>
 <div id="workout"></div>
-<p class="note">Tus checks y pesos se guardan en este navegador en este dispositivo. Los ejercicios sin repeticiones visibles en el material están marcados «por confirmar»; no se han inventado.</p>
+<p class="note">Tus checks y pesos se guardan en este navegador en este dispositivo. El plan se organiza en un ciclo continuo de dos semanas. Los ejercicios sin repeticiones visibles en el material están marcados «por confirmar»; no se han inventado.</p>
 <button onclick="clearDay()">Reiniciar checks de este día</button>
 </main>
 <script>
@@ -48,11 +48,50 @@ const data = [
 ["Sábado · Full body","Calentamiento: 2 rondas. Bloque: 3 rondas; descanso 1 min. Cardio 25 min.","Side-side banda|calentamiento 2 rondas","Sentadilla sin peso|calentamiento 2 rondas","Saltos del payaso|calentamiento 2 rondas","Círculos brazos|calentamiento 2 rondas","Thruster|3×12 (dato de captura previa)","V-ups|3×10 (dato de captura previa)","Sentadilla sumo|3 rondas · reps por confirmar","Puente + pecho|3×12 (dato de captura previa)","Burpee intermedio|3×10 (dato de captura previa)","Patada atrás glúteos|3×10 por lado (dato de captura previa)","Cardio|25 min caminadora (inclinación 8–12, velocidad 3,5–5 km/h)"]
 ]
 ];
+
+const explanations = {
+"Arnold press unilateral":"Press de hombro con una mancuerna y un brazo cada vez. Empieza con la palma hacia ti; al empujar hacia arriba, gira la mano hasta que la palma mire al frente. Baja controlando e invierte el giro.",
+"Apertura pecho":"Con mancuernas, abre los brazos hacia los lados con los codos ligeramente flexionados y vuelve a juntarlos sobre el pecho. No bajes más allá de donde el hombro esté cómodo.",
+"Shoulder taps":"En posición de plancha alta, toca con una mano el hombro contrario y alterna. Mantén el tronco estable y evita balancear las caderas.",
+"Elevaciones laterales":"Con mancuernas a los lados, eleva los brazos hacia los lados hasta aproximadamente la altura de los hombros, con codos suaves; baja despacio.",
+"Bíceps curl alternado":"Flexiona un codo para acercar la mancuerna al hombro, baja con control y alterna los brazos. Mantén los codos cerca del torso.",
+"Bíceps curl + press hombro":"Haz una flexión de bíceps y, desde los hombros, empuja las mancuernas por encima de la cabeza. Baja de forma controlada.",
+"Reverse fly":"Pecho inclinado hacia delante y espalda neutra. Abre los brazos hacia los lados, como formando una T, apretando suavemente la parte posterior de los hombros; baja despacio.",
+"Bicicleta abs":"Tumbada boca arriba, lleva el codo hacia la rodilla contraria mientras extiendes la otra pierna; alterna sin tirar del cuello.",
+"Elevación frontal alternada":"Eleva una mancuerna al frente hasta la altura del hombro, baja controlando y alterna. Evita impulsarte con la espalda.",
+"Pinwheel curl":"Curl de bíceps con agarre neutro: las palmas se miran entre sí durante todo el recorrido, como si sujetaras dos martillos. Flexiona y baja despacio.",
+"Knee tuck":"Desde plancha alta o apoyada en antebrazos según la variante indicada, lleva una o ambas rodillas hacia el pecho y vuelve a extender sin hundir la zona lumbar.",
+"Press hombros sentado":"Sentada y con el abdomen firme, empuja las mancuernas desde la altura de los hombros hasta extender los brazos arriba. Baja controlando.",
+"Remo abierto banco inclinado":"Apoya el pecho en un banco inclinado, deja colgar las mancuernas y tira de ellas hacia el torso con los codos abiertos. Junta suavemente los omóplatos.",
+"Skull crusher tríceps":"Tumbada en un banco con mancuernas, mantén los brazos apuntando al techo; flexiona los codos para acercar las pesas a los lados de la frente y vuelve a extender. Mueve los antebrazos, no los hombros.",
+"Remo barra abierto":"Inclina el torso con espalda neutra y sujeta la barra con agarre más abierto. Lleva la barra hacia la parte alta del abdomen/torso y baja controlando.",
+"Fondos":"Apoya las manos en un banco o soporte estable, flexiona los codos para bajar el cuerpo y empuja para subir. Mantén los hombros cómodos; usa un rango sin dolor.",
+"Plancha alta-baja":"Desde plancha alta, baja un antebrazo y luego el otro; vuelve a subir una mano cada vez. Alterna el brazo que inicia y mantén las caderas estables.",
+"Remo unilateral polea":"De pie o sentada frente a la polea, tira del agarre con un brazo hacia el costado del torso. Evita girar el tronco y vuelve lentamente.",
+"Patada tríceps unilateral banco":"Con una mano y una rodilla apoyadas en el banco, lleva el codo pegado al cuerpo y estira el antebrazo hacia atrás. Vuelve sin mover el codo.",
+"Sit up":"Tumbada boca arriba con rodillas flexionadas, eleva el tronco hacia las rodillas y baja con control. Evita tirar del cuello.",
+"Tríceps copa":"Sujeta una mancuerna por encima de la cabeza con ambas manos; flexiona los codos para bajarla detrás de la cabeza y vuelve a extenderlos manteniendo los codos apuntando al frente.",
+"Inchworm":"De pie, flexiona la cadera y apoya las manos en el suelo; camina con las manos hasta quedar en plancha y vuelve caminando hacia los pies. Mantén el movimiento controlado.",
+"Reverse crunch abs":"Tumbada boca arriba, lleva las rodillas flexionadas hacia el pecho y eleva suavemente la pelvis del suelo; baja despacio sin balancearte.",
+"Mountain climbers":"En plancha alta, lleva una rodilla hacia el pecho y alterna rápidamente las piernas. Mantén hombros sobre las manos y abdomen firme.",
+"Remo alternado":"Con el torso inclinado y espalda neutra, tira de una mancuerna hacia la cadera y luego de la otra, alternando sin girar el tronco.",
+"Bíceps curl mancuernas":"Flexiona los codos para acercar las mancuernas a los hombros y baja lentamente. En la serie 21: 7 repeticiones desde abajo hasta la mitad, 7 desde la mitad hasta arriba y 7 completas.",
+"Lat pull down cerrado":"Sentada en la máquina, sujeta la barra o agarre estrecho por encima de la cabeza y tira hacia la parte alta del pecho llevando los codos hacia abajo. Regresa lentamente sin balancearte.",
+"Lat pull down máquina":"En la máquina de jalón, tira de la barra hacia la parte alta del pecho llevando los codos hacia abajo; vuelve arriba de forma controlada.",
+"Renegade row":"En plancha alta con las manos sobre mancuernas estables, rema una mancuerna hacia la cadera y alterna. Separa un poco los pies para ganar estabilidad y evita rotar la pelvis.",
+"Flexiones pecho":"Con manos apoyadas algo más abiertas que los hombros, baja el pecho manteniendo el cuerpo alineado y empuja para volver. Puedes apoyar las rodillas si lo necesitas.",
+"Puños":"Alterna golpes al frente con los puños, extendiendo los brazos sin bloquear con fuerza los codos.",
+"Criss cross":"Ejercicio dinámico de abdomen: tumbada boca arriba, alterna acercar codo y rodilla contrarios mientras extiendes la otra pierna.",
+"Círculos brazos":"Extiende los brazos a los lados y haz círculos pequeños hacia delante; cambia de dirección si así lo indica tu calentamiento.",
+"Plancha a V invertida":"Desde plancha alta, empuja la cadera hacia arriba y atrás formando una V invertida; vuelve a la plancha con control.",
+"Elevación piernas":"Tumbada boca arriba, eleva las piernas y bájalas lentamente sin arquear la zona lumbar. Flexiona las rodillas si necesitas adaptar el movimiento."
+};
+
 const days=document.getElementById('day'),week=document.getElementById('week'),out=document.getElementById('workout');
 function key(){return 'mi-entrenamiento-'+week.value+'-'+days.value}
-function renderDays(){days.innerHTML='';data[+week.value].forEach((d,i)=>{let o=document.createElement('option');o.value=i;o.textContent=d[0];days.append(o)});render()}
+function renderDays(){days.innerHTML='';data[+week.value].forEach((d,i)=>{let o=document.createElement('option');o.value=i;o.textContent=d[0];days.append(o)});days.value='0';render()}
 function render(){let d=data[+week.value][+days.value];let saved=JSON.parse(localStorage.getItem(key())||'{}');out.innerHTML=`<section class="card"><h2>${d[0]}</h2><div class="meta">${d[1]}</div><div><span class="tag">Marca al terminar</span><span class="tag">Anota tus cargas</span></div></section>`;
-d.slice(2).forEach((raw,i)=>{let [name,detail]=raw.split('|');let id='e'+i;let val=saved[id]||{};let row=document.createElement('div');row.className='card item';row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div><input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"> <span class="note">peso usado</span></div>`;let cb=row.querySelector('input[type=checkbox]'),wt=row.querySelector('.weight');function save(){saved[id]={done:cb.checked,weight:wt.value};localStorage.setItem(key(),JSON.stringify(saved))}cb.addEventListener('change',save);wt.addEventListener('input',save);out.append(row)})}
+d.slice(2).forEach((raw,i)=>{let [name,detail]=raw.split('|');let id='e'+i;let val=saved[id]||{};let row=document.createElement('div');row.className='card item';row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div>${explanations[name]?`<div class="explain"><b>Cómo hacerlo:</b> ${explanations[name]}</div>`:''}<input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"> <span class="note">peso usado</span></div>`;let cb=row.querySelector('input[type=checkbox]'),wt=row.querySelector('.weight');function save(){saved[id]={done:cb.checked,weight:wt.value};localStorage.setItem(key(),JSON.stringify(saved))}cb.addEventListener('change',save);wt.addEventListener('input',save);out.append(row)})}
 function clearDay(){if(confirm('¿Reiniciar los checks y pesos de este día?')){localStorage.removeItem(key());render()}}
 week.addEventListener('change',renderDays);days.addEventListener('change',render);renderDays();
 if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js');
