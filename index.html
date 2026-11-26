@@ -128,6 +128,20 @@ cb.addEventListener('change',save);wt.addEventListener('input',save);block.appen
 }
 out.append(block);
 });
+// No dejar ejercicios fuera si un día tiene más elementos que los bloques definidos.
+if(exerciseIndex < d.length-2){
+let extra=document.createElement('section');extra.className='card';
+extra.innerHTML='<h2>Más ejercicios del día</h2><div class="meta">Se muestran en el orden original del plan</div>';
+while(exerciseIndex < d.length-2){
+let raw=d[exerciseIndex+2];let [name,detail]=raw.split('|');let id='e'+exerciseIndex;let val=saved[id]||{};
+let row=document.createElement('div');row.className='item';
+row.innerHTML=`<input type="checkbox" ${val.done?'checked':''} aria-label="Completado"><div><div class="name">${name}</div><div class="detail">${detail||''}</div>${explanations[name]?`<div class="explain"><b>Cómo hacerlo:</b> ${explanations[name]}</div>`:''}<input class="weight" placeholder="Peso (kg)" value="${val.weight||''}" aria-label="Peso usado"> <span class="note">peso usado</span></div>`;
+let cb=row.querySelector('input[type=checkbox]'),wt=row.querySelector('.weight');
+function save(){saved[id]={done:cb.checked,weight:wt.value};localStorage.setItem(key(),JSON.stringify(saved))}
+cb.addEventListener('change',save);wt.addEventListener('input',save);extra.append(row);exerciseIndex++;
+}
+out.append(extra);
+}
 }
 function clearDay(){if(confirm('¿Reiniciar los checks y pesos de este día?')){localStorage.removeItem(key());render()}}
 week.addEventListener('change',renderDays);days.addEventListener('change',render);renderDays();
